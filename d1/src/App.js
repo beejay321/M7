@@ -44,7 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <Router className="App">
-         <NavBar />
+         {/* <NavBar /> */}
         <Route component={Home} path="/" exact />
 
         <Route component={Search} path="/search/:query" />

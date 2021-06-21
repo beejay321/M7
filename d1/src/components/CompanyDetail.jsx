@@ -18,7 +18,7 @@ class ShowDetail extends Component {
     });
 
     try {
-      const response = await fetch(`https://remotive.io/api/remote-jobs?company_name=` + companyName);
+      const response = await fetch(`https://remotive.io/api/remote-jobs?company_name=${this.props.match.params.companyName}`);
       //   console.log(response);
       if (response.ok) {
         let data = await response.json();
@@ -40,30 +40,31 @@ class ShowDetail extends Component {
   };
 
   render() {
-    console.log("Not AGAIN");
-    console.log(this.props.title);
-
-    console.log(this.state.MovieToShow);
     return (
       <>
-        {this.state.company && (
-          <Container>
-            <h1 className="py-4"> DETAILS </h1>
-            <Card
-            // style={{ width: "18rem" }}
-            >
-              {this.state.company.map((job) => (
+        {/* {this.state.company && ( */}
+        <Container>
+          <h1 className="py-4"> DETAILS </h1>
+          {this.state.company.map((job) => (
+            <div className="py-2">
+              <Card style={{ width: "50rem" }}>
                 <Card.Body>
                   <Card.Title>{job.title}</Card.Title>
-                  {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link> */}
+                  <br />
+                  <Card.Subtitle className="mb-2 text-muted">{job.company_Name}</Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">{job.job_type}</Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">{job.category}</Card.Subtitle>
+                  {/* <Card.Text>{job.description.slice(0, 500) + "...."}</Card.Text> */}
+                  <Card.Text>
+                    <div dangerouslySetInnerHTML={{ __html: job.description }}></div>
+                  </Card.Text>
+                  <Card.Text>{job.url}</Card.Text>
                 </Card.Body>
-              ))}
-            </Card>
-          </Container>
-        )}
+              </Card>
+            </div>
+          ))}
+        </Container>
+        {/* )} */}
       </>
     );
   }

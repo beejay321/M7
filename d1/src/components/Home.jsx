@@ -1,11 +1,12 @@
 import React from "react";
-import { Container,  Card } from "react-bootstrap";
+import { Container,  Card, Form, Button, FormControl } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
 
 class Home extends React.Component {
   state = {
     jobs: [],
+    query:""
   };
 
   componentDidMount = async () => {
@@ -16,7 +17,9 @@ class Home extends React.Component {
 
   fetchData = async () => {
     try {
-      let response = await fetch("https://remotive.io/api/remote-jobs");
+      let response = await fetch(`https://remotive.io/api/remote-jobs
+      `);
+    //   ?search=${query}
     //   console.log(response);
       if (response.ok) {
         let data = await response.json();
@@ -48,8 +51,17 @@ class Home extends React.Component {
       <>
        <Container>
           <h1>Jobs</h1>
+          <Form inline>
+                <FormControl type="text" placeholder="Search" 
+                value = {this.state.value}
+                onChange = {(e) => this.setState({query: e.currentTarget.value.toLowerCase()})}
+                className="mr-sm-2" 
+                />
+                {/* <Button variant="outline-success">Search</Button> */}
+              </Form>
           <Card>
-            {this.state.jobs.map((job) => (
+            {this.state.jobs.filter(job =>job.title.toLowerCase().indexOf(this.state.query)!== -1)
+            .map((job) => (
               <Card.Body style={{ color: "black" }}>
                 <Link to = {`/companyDetail/${job.company_name}`}>
                     <Card.Title 
@@ -71,3 +83,17 @@ class Home extends React.Component {
 }
 
 export default Home;
+
+{/* <Row id="movieRow" className="flex-row flex-nowrap scroll-container">
+          {this.state.movies
+            .filter((movie) =>
+              movie.Title.toLowerCase().includes(this.state.query)
+            )
+            .map((movie) => (
+              <Col>
+                <Card className="h-100 text-center ">
+                  <Card.Img variant="cover" src={movie.Poster} rounded />
+                </Card>
+              </Col>
+            ))}
+        </Row> */}
