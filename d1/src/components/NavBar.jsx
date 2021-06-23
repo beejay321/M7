@@ -7,13 +7,13 @@ class NavBar extends React.Component {
       <>
         <Navbar bg="light" expand="lg">
           <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="#home">JOB HUNT</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Form inline>
+              {/* <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-success">Search</Button>
-              </Form>
+              </Form> */}
             </Navbar.Collapse>
           </Container>
         </Navbar>
