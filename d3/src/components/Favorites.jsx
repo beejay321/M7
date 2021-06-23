@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { removeFromFavAction } from "../actions";
 
 const mapStateToProps = (state) => ({
-  jobs: state.company.favorites,
+  company: state.favorites.company,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -12,17 +12,17 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const Favorites = ({ jobs, removeFromCart }) => (
+const Favorites = (props) => (
   <Row>
     <Col sm={12}>
       <ul style={{ listStyle: "none" }}>
-        {jobs.map((job, i) => (
+        {props.company.map((job, i) => (
           <div className="py-3">
             <Card style={{ width: "80rem" }}>
               <Card.Body>
                 <Card.Title>{job.title}</Card.Title>
                 <br />
-                <Card.Subtitle className="mb-2 text-muted">{job.company_Name}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{job.company_name}</Card.Subtitle>
                 <Card.Subtitle className="mb-2 text-muted">{job.job_type}</Card.Subtitle>
                 <Card.Subtitle className="mb-2 text-muted">{job.category}</Card.Subtitle>
                 <Card.Text>{/* <div dangerouslySetInnerHTML={{ __html: job.description }}></div> */}</Card.Text>

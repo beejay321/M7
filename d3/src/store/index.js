@@ -2,8 +2,8 @@ import { createStore } from "redux";
 import mainReducer from "../reducers";
 
 export const initialState = {
-  company: {
-    favorites: [],
+  favorites: {
+    company: [],
   },
 };
 

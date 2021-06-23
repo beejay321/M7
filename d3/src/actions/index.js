@@ -1,7 +1,7 @@
-export const addToFavAction = (job) => {
+export const addToFavAction = (company) => {
   return {
     type: "ADD_TO_FAV",
-    payload: job,
+    payload: company,
   };
 };
 

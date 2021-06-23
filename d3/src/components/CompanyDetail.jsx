@@ -61,10 +61,9 @@ class ShowDetail extends Component {
 
             <Col>
               <Button className="my-4" 
-              // onClick={() => this.props.addTofav(company)}
+              onClick={() => this.props.addTofav(this.state.company)}
               >
                 Add To Favorites
-                {/* <i className="bi bi-heart-fill"></i> */}
               </Button>
             </Col>
           </Row>
@@ -73,11 +72,9 @@ class ShowDetail extends Component {
               <Card style={{ width: "80rem" }}>
                 <Card.Body>
                   <Card.Title>{job.title}</Card.Title>
-                  {/* <br /> */}
                   {/* <Card.Subtitle className="mb-2 text-muted">{company.company_name}</Card.Subtitle> */}
                   <Card.Subtitle className="mb-2 text-muted">{job.job_type}</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{job.category}</Card.Subtitle>
-                  {/* <Card.Text>{company.description.slice(0, 500) + "...."}</Card.Text> */}
                   <Card.Text>{/* <div dangerouslySetInnerHTML={{ __html: company.description }}></div> */}</Card.Text>
                   <Card.Text>{job.url}</Card.Text>
                 </Card.Body>

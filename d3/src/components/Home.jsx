@@ -80,10 +80,9 @@ class Home extends React.Component {
                         </Card.Body>
                       </Col>
                       <Col>
-                        <Button className="my-4" onClick={() => this.props.addTofav(job)}>
+                        {/* <Button className="my-4" onClick={() => this.props.addTofav(job)}>
                           Favorites
-                          {/* <i className="bi bi-heart-fill"></i> */}
-                        </Button>
+                        </Button> */}
                       </Col>
                     </Row>
                   </Card>

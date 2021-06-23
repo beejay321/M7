@@ -8,9 +8,9 @@ import { initialState } from '../store'
         //   let favJobs = 
         return {
           ...state,
-          company: {
-            ...state.jobs,            
-            favorites: [...state.company.favorites, action.payload], // THIS IS VALID            
+          favorites: {
+            ...state.company,            
+            company: [...state.favorites.company, action.payload], // THIS IS VALID            
           },
         };
       default:
