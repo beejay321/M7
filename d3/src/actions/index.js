@@ -19,7 +19,7 @@ export const getJobsAction = () => {
       payload: true,
     });
     try {
-      let response = await fetch(`https://remotive.io/api/remote-jobs?limit=20`);
+      let response = await fetch(`https://remotive.io/api/remote-jobs?limit=1000`);
       if (response.ok) {
         let data = await response.json();
         console.log(data);
@@ -41,6 +41,10 @@ export const getJobsAction = () => {
       dispatch({
         type: "SET_LOADING",
         payload: false,
+      });
+      dispatch({
+        type: "SET_ERROR",
+        payload: true,
       });
     }
   };

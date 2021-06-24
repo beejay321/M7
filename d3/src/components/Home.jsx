@@ -3,58 +3,24 @@ import { Container, Card, Form, Col, Row, FormControl, Button } from "react-boot
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getJobsAction } from "../actions";
-
+import { getJobsAction, addToFavAction } from "../actions";
 
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
   getJobs: () => dispatch(getJobsAction()),
+  addTofav: (company) => {
+    dispatch(addToFavAction(company));
+  },
 });
 
 class Home extends React.Component {
   state = {
-    jobs: {
-      results: [],
-    },
     query: "",
-    isLoading: false,
   };
 
   // componentDidMount = async () => {
-  //   this.props.getJobs()  };
-
-  // fetchData = async (e) => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     isLoading: true,
-  //   });
-  //   try {
-  //     let response = await fetch(`https://remotive.io/api/remote-jobs?limit=20`);
-  //     //   console.log(response);
-  //     if (response.ok) {
-  //       let data = await response.json();
-  //       console.log(data.jobs);
-  //       this.setState({
-  //         jobs: { results: data.jobs },
-  //         isLoading: false,
-  //       });
-  //     } else {
-  //       this.setState({
-  //         isError: true,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     this.setState({
-  //       isError: true,
-  //     });
-  //   }
-  // };
-
-  // componentDidUpdate = async (previousProps, previousState) => {
-  //   if (previousState.jobs !== this.state.jobs) {
-  //     this.fetchData();
-  //   }
+  //   this.props.getJobs();
   // };
 
   render() {
@@ -63,8 +29,11 @@ class Home extends React.Component {
         <Container>
           <h1>Jobs</h1>
           <Col>
-            <Form inline className="py-4" onSubmit={this.props.getJobs()}>
-              <FormControl type="text" placeholder="Search" value={this.state.value} onChange={(e) => this.setState({ query: e.currentTarget.value.toLowerCase() })} className="mr-sm-2" />
+            <Form inline className="py-4">
+              <FormControl type="text" placeholder="Search" value={this.state.query} onChange={(e) => this.setState({ query: e.currentTarget.value.toLowerCase() })} className="mr-sm-2" />
+              <Button className="my-4" onClick={this.props.getJobs}>
+                Search
+              </Button>
             </Form>
           </Col>
           {this.props.jobs.isLoading && (
@@ -89,9 +58,9 @@ class Home extends React.Component {
                         </Card.Body>
                       </Col>
                       <Col>
-                        {/* <Button className="my-4" onClick={() => this.props.addTofav(job)}>
+                        <Button className="my-4" onClick={() => this.props.addTofav(job)}>
                           Favorites
-                        </Button> */}
+                        </Button>
                       </Col>
                     </Row>
                   </Card>
@@ -99,7 +68,6 @@ class Home extends React.Component {
               ))}
           </Row>
         </Container>
-        {/* <job/> */}
       </>
     );
   }
