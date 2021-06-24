@@ -11,6 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(removeFromFavAction(index));
   },
 });
+// console.log(props)
 
 const Favorites = (props) => (
   <Row>

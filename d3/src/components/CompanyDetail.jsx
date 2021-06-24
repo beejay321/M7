@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class ShowDetail extends Component {
   state = {
-    company :{},
+    companyy :{},
     jobs: [],
   };
 
@@ -35,7 +35,7 @@ class ShowDetail extends Component {
         console.log(data)
         console.log(data.jobs);
         this.setState({
-          company: data,
+          companyy: data,
           jobs : data.jobs,
           
         });
@@ -61,7 +61,7 @@ class ShowDetail extends Component {
 
             <Col>
               <Button className="my-4" 
-              onClick={() => this.props.addTofav(this.state.company)}
+              onClick={() => this.props.addTofav(this.state.companyy)}
               >
                 Add To Favorites
               </Button>
@@ -76,7 +76,7 @@ class ShowDetail extends Component {
                   <Card.Subtitle className="mb-2 text-muted">{job.job_type}</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{job.category}</Card.Subtitle>
                   <Card.Text>{/* <div dangerouslySetInnerHTML={{ __html: company.description }}></div> */}</Card.Text>
-                  <Card.Text>{job.url}</Card.Text>
+                  {/* <Card.Text>{job.url}</Card.Text> */}
                 </Card.Body>
               </Card>
             </div>

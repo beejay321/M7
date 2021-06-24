@@ -21,7 +21,6 @@ class App extends React.Component {
         <NavBar />
         <Route component={Home} path="/" exact />
 
-        {/* <Route path="/" exact render={(routerProps) => <Home {...routerProps}  />} /> */}
         <Route component={Favorites} path="/favorites" />
         <Route path="/companyDetail/:companyName" render={(routerProps) => <CompanyDetail {...routerProps}  />} />
       </Router>
