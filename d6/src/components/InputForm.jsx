@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Container, Row, Col } from "react-bootstrap";
 import uniqid from "uniqid";
 import { connect } from "react-redux";
 import {  addTodo } from "../store/actions";
@@ -31,18 +31,17 @@ const InputForm = (props) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Control
-        type="text"
-        placeholder="New task..."
-        value={description}
-        onChange={handleChange}
-        // onChange={(e) => {
-        //   setDescription(e.target.value)
-        // }}
-      />
-      <Form.Control type="submit" />
-    </Form>
+   <Container>
+      <Form onSubmit={handleSubmit}>
+        <Form.Control
+          type="text"
+          placeholder="New task..."
+          value={description}
+          onChange={handleChange}        
+        />
+        <Form.Control type="submit" />
+      </Form>
+   </Container>
   );
 };
 
