@@ -1,26 +1,31 @@
 import React, { Component } from "react";
 import { toggleCompleted, reset } from "../store/actions";
-import { Button, Container, Row, Col } from "react-bootstrap";
-import { connect } from "react-redux";
+import { Button } from "react-bootstrap";
+import { connect, useSelector, useDispatch } from "react-redux";
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleCompleted: (id) => dispatch(toggleCompleted(id)),
-  reset: () => dispatch(reset()),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   toggleCompleted: (id) => dispatch(toggleCompleted(id)),
+//   reset: () => dispatch(reset()),
+// });
 
 const List = (props) => {
+  const list = useSelector((state) => state.list)
+  const dispatch = useDispatch()
   return (
     <>
       <ul>
-        {props.list.map((todo) => (
-          <li key={todo.id} onClick={() => props.toggleCompleted(todo)} className={todo.completed ? "strikethrough" : ""}>
+        {list.map((todo) => (
+          <li key={todo.id} 
+          onClick={() => dispatch(toggleCompleted(todo))}
+          className={todo.completed ? "strikethrough" : ""}>
             {todo.description}
           </li>
         ))}
       </ul>
-      <Button onClick={props.reset}>reset</Button>
+      <Button onClick={() => dispatch(reset())}>reset</Button>
     </>
   );
 };
 
-export default connect((s) => s, mapDispatchToProps)(List);
+export default List
+//  connect((s) => s, mapDispatchToProps)(List);

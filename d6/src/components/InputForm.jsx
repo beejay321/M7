@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import uniqid from "uniqid";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import {  addTodo } from "../store/actions";
 
-const mapDispatchToProps = (dispatch) => ({
-  addTodo: (todo) => dispatch(addTodo(todo)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   addTodo: (todo) => dispatch(addTodo(todo)),
+// });
 
 const InputForm = (props) => {
   // state = {
   //   description: ""
   // };
+  const dispatch = useDispatch()
   const [description, setDescription] = useState("");
+
 
   const handleChange = (event) => {
     setDescription(event.target.value);
@@ -26,7 +28,7 @@ const InputForm = (props) => {
       completed: false,
     };
     console.log(todo);
-    props.addTodo(todo);
+   dispatch(addTodo(todo));
     setDescription("");
   };
 
@@ -45,4 +47,5 @@ const InputForm = (props) => {
   );
 };
 
-export default connect((s) => s, mapDispatchToProps)(InputForm);
+export default InputForm
+// connect((s) => s, mapDispatchToProps)(InputForm);
