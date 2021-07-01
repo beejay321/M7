@@ -1,19 +1,31 @@
-export interface Song {
-    id : string
-    title : string
-    artist ?: Artist
-      album : Album
-        
+export interface dish {
+    id : number
+    name : string
+    image : string
+    description: string
+    comments : Comment []   
     }
 
-export interface Album {
-      id: number
-      cover: string
-      title: string
-        
+export interface selecteddish {
+    id : number
+    name : string
+    image : string
+    description: string
     }
-export interface Artist {
-      id: number
-      name: string
-        
+
+
+export interface reservation {
+    _id : number
+    name : string       
     }
+
+
+export interface Comment {
+    id : number
+    rating : number   
+    comment : string   
+    author : string   
+    date : string   
+    
+    }
+

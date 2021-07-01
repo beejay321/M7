@@ -5,7 +5,7 @@ interface NavProps extends RouteComponentProps {
   title: string;
 }
 
-const MyNav = ({ title }: NavProps) => (
+const MyNav = ({ title, location }: NavProps) => (
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Link to="/">
       <Navbar.Brand>{title}</Navbar.Brand>
