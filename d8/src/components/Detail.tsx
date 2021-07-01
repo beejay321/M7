@@ -4,8 +4,11 @@ import { Card, Button, Col, Row, Container } from "react-bootstrap";
 import { RouteComponentProps } from "react-router-dom";
 
 //method one
-interface DetailComponentProp extends RouteComponentProps {
+interface DetailComponentProp extends RouteComponentProps<Params> {
   title: string;
+}
+interface Params {
+  album: string;
 }
 
 //method one
@@ -19,8 +22,9 @@ const Details = ({ match }: DetailComponentProp) => {
 
   useEffect(() => {
     const getSongs = async () => {
+      const id = match.params;
       try {
-        let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/108440162`);
+        let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${match.params.album}`);
         console.log(response);
         let result = await response.json();
         console.log(result);
@@ -38,7 +42,7 @@ const Details = ({ match }: DetailComponentProp) => {
         {/* <h4>{title}</h4> */}
         <br />
         <Row>
-          <Col  className="px-3">
+          <Col className="px-3">
             <Card style={{ width: "18rem" }}>
               <Card.Img variant="top" src={song.cover} />
               <Card.Body>

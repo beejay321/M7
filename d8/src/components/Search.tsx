@@ -34,7 +34,7 @@ function Search() {
         <Form className="py-4">
           <Row>
             <Col sm={9}>
-              <FormControl type="text" placeholder="Search" value={query} 
+              <FormControl id = "search" type="text" placeholder="Search" value={query} 
               onChange={(e) => setQuery(e.currentTarget.value.toLowerCase())} 
               className="mr-sm-2" />
             </Col>
