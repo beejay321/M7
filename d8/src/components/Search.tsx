@@ -4,16 +4,10 @@ import SearchResults from "./SearchResults";
 import { useState, useEffect } from "react";
 import { Song } from "../types/interface";
 
-interface Search {
-  query: string;
-}
 
-//  const  submitHandler = (e: FormEvent<HTMLFormElement>) => {
-//     setQuery(e.target.value)
-//   }
 
 function Search() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string>("");
   const [songs, setSongs] = useState<Song[]>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +15,6 @@ function Search() {
     setQuery(e.currentTarget.value);
   };
 
-  // useEffect(() => {
   const getSongs = async (query: string) => {
     try {
       let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`);
@@ -33,8 +26,7 @@ function Search() {
       console.log("error");
     }
   };
-  //   getSongs()
-  // }, [])
+  
 
   return (
     <div>
