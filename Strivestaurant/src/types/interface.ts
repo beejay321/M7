@@ -15,8 +15,14 @@ export interface selecteddish {
 
 
 export interface reservation {
-    _id : number
-    name : string       
+    _id? : number
+    name : string 
+    phone : string 
+    numberOfPersons : number 
+    smoking : false 
+    dateTime : string 
+    specialRequests : string 
+          
     }
 
 
