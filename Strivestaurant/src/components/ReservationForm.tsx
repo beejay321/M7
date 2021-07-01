@@ -59,7 +59,8 @@ const ReservationForm = () => {
       <Form className="mb-5" onSubmit={(e) => submitReservation(e)}>
         <Form.Group>
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" value={reservation.name} id="name" onChange={inputChange} />
+          <Form.Control type="text" placeholder="Enter name" value={reservation.name} id="name" 
+          onChange={inputChange} />
         </Form.Group>
         <Form.Group>
           <Form.Label>Phone</Form.Label>

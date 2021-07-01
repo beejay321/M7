@@ -35,7 +35,9 @@ const Home = ({ title }: HomeProps) => {
             ))}
           </Carousel>
         </Col>
-        <DishComments selectedPasta={selected} />
+        {/* <DishComments selectedPasta={selected} /> */}
+        {selected &&
+         <DishComments selectedPasta={selected} />}
       </Row>
     </Container>
   );
