@@ -4,8 +4,8 @@ import { Card, Button, Col, Row, Container } from "react-bootstrap";
 import { RouteComponentProps } from "react-router-dom";
 
 //method one
-interface DetailComponentProp  extends RouteComponentProps {
-    title : string
+interface DetailComponentProp extends RouteComponentProps {
+  title: string;
 }
 
 //method one
@@ -13,23 +13,24 @@ interface DetailComponentProp  extends RouteComponentProps {
 //     title : string
 // }
 // type  DetailComponentProp =  MyProps & RouteComponentProps
-    
 
-const Details = () => {
-  const [song, setSong] = useState<any>({});
+const Details = ({ match }: DetailComponentProp) => {
+  const [song, setSong] = useState<any>("");
 
-  const getSongs = async ({ match }: DetailComponentProp) => {
-    const query = match.params;
-    try {
-      let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`);
-      console.log(response);
-      let result = await response.json();
-      console.log(result);
-      setSong(result);
-    } catch (error) {
-      console.log("error");
-    }
-  };
+  useEffect(() => {
+    const getSongs = async () => {
+      try {
+        let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/108440162`);
+        console.log(response);
+        let result = await response.json();
+        console.log(result);
+        setSong(result);
+      } catch (error) {
+        console.log("error");
+      }
+    };
+    getSongs();
+  }, []);
 
   return (
     <>
@@ -37,10 +38,12 @@ const Details = () => {
         {/* <h4>{title}</h4> */}
         <br />
         <Row>
-          <Col sm={3} className="px-3">
+          <Col  className="px-3">
             <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="" />
-              <Card.Body></Card.Body>
+              <Card.Img variant="top" src={song.cover} />
+              <Card.Body>
+                <Card.Title>{song.title}</Card.Title>
+              </Card.Body>
             </Card>
           </Col>
         </Row>

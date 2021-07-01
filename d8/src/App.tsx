@@ -13,7 +13,7 @@ function App() {
       <Router>
         <NavBar />
         <Route component={Search} path="/" exact />
-        <Route component={Details} path="/Detail" />
+        <Route component={Details} path="/Detail/:album" />
         {/* <Route path="/Detail" render={() => <Details title ="Detail" />} /> */}
       </Router>
     </>
