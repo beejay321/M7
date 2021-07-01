@@ -1,7 +1,8 @@
 export interface Song {
+    id : string
     title : string
     artist ?: Artist
-      album? : Album
+      album : Album
         
     }
 

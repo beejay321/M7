@@ -1,41 +1,61 @@
-import { Component } from "react";
-import SearchResults from "./SearchResults"
-import { useState, useEffect } from 'react'
-import { Song } from '../types/interface'
+import { Component, ChangeEvent, FormEvent } from "react";
+import { Button, Form, FormControl, Col, Container, Row } from "react-bootstrap";
+import SearchResults from "./SearchResults";
+import { useState, useEffect } from "react";
+import { Song } from "../types/interface";
 
+interface Search {
+  query: string;
+}
 
-
-
-
+//  const  submitHandler = (e: FormEvent<HTMLFormElement>) => {
+//     setQuery(e.target.value)
+//   }
 
 function Search() {
-    const [query, setQuery] = useState('')
-    const [songs, setSongs] = useState<Song[]>([])
-  
-    useEffect(() => {
-      const getSongs = async () => {
-        try {
-          let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem`)
-          console.log(response)
-          let result = await response.json()
-          setSongs(result.data)
-        } catch (error) {
-          console.log('error')
-        }
-      }
-      getSongs()
-    }, [])
-  
-    return (
-      <div className="App">
-        <header className="App-header">
-          {console.log(songs)}
-          <SearchResults title="HELLO"  songs={songs}  />
-       
-        </header>
-      </div>
-    )
-  }
-  
-  export default Search
-  
+  const [query, setQuery] = useState("");
+  const [songs, setSongs] = useState<Song[]>([]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setQuery(e.currentTarget.value);
+  };
+
+  // useEffect(() => {
+  const getSongs = async (query: string) => {
+    try {
+      let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`);
+      console.log(response);
+      let result = await response.json();
+      console.log(result);
+      setSongs(result.data);
+    } catch (error) {
+      console.log("error");
+    }
+  };
+  //   getSongs()
+  // }, [])
+
+  return (
+    <div>
+      <Container>
+        <Form className="py-4">
+          <Row>
+            <Col sm={9}>
+              <FormControl type="text" placeholder="Search" value={query} 
+              onChange={(e) => setQuery(e.currentTarget.value.toLowerCase())} 
+              className="mr-sm-2" />
+            </Col>
+            <Col>
+              <Button onClick={() => getSongs(query)}>Search</Button>
+            </Col>
+          </Row>
+        </Form>
+        <br />
+        <SearchResults title="My Songs" songs={songs} />
+      </Container>
+    </div>
+  );
+}
+
+export default Search;
