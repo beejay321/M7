@@ -18,11 +18,15 @@ interface Params {
 // type  DetailComponentProp =  MyProps & RouteComponentProps
 
 const Details = ({ match }: DetailComponentProp) => {
-  const [song, setSong] = useState<any>("");
+
+  const [song, setSong] = useState<Album>({
+    id: 1,
+    title: "",
+    cover: "",
+  });
 
   useEffect(() => {
     const getSongs = async () => {
-      const id = match.params;
       try {
         let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${match.params.album}`);
         console.log(response);

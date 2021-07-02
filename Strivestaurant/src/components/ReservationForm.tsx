@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import { ChangeEvent, FormEvent } from "react";
 import { reservation } from "../types/interface";
 
@@ -12,7 +12,11 @@ const ReservationForm = () => {
     dateTime: "",
     specialRequests: "",
   });
-  //   const [reservation, setReservation] = useState<reservation | null>(null);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
     let id = e.target.id;
@@ -55,12 +59,65 @@ const ReservationForm = () => {
 
   return (
     <>
-      <h3 className="mt-3">RESERVATION FORM</h3>
-      <Form className="mb-5" onSubmit={(e) => submitReservation(e)}>
+      {/* <h3 className="mt-3">RESERVATION FORM</h3> */}
+      <Button variant="primary" onClick={handleShow}>
+        Make your Reservation{" "}
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>
+            <h3 className="mt-3">RESERVATION FORM</h3>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Form className="mb-5 px-3" onSubmit={(e) => submitReservation(e)}>
+          <Form.Group>
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter name" value={reservation.name} id="name" onChange={inputChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Phone</Form.Label>
+            <Form.Control type="number" placeholder="Enter phone" id="phone" value={reservation.phone} onChange={inputChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>How many people?</Form.Label>
+            <Form.Control as="select" value={reservation.numberOfPersons} id="numberOfPersons" onChange={inputChange}>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Check type="checkbox" label="Do you smoke?" checked={reservation.smoking} id="smoking" onChange={inputChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Date</Form.Label>
+            <Form.Control type="datetime-local" value={reservation.dateTime} id="dateTime" onChange={inputChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Any special request?</Form.Label>
+            <Form.Control as="textarea" rows={3} value={reservation.specialRequests} id="specialRequests" onChange={inputChange} />
+          </Form.Group>
+          
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" type="submit" onClick={handleClose}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+
+      {/* <Form className="mb-5" onSubmit={(e) => submitReservation(e)}>
         <Form.Group>
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" value={reservation.name} id="name" 
-          onChange={inputChange} />
+          <Form.Control type="text" placeholder="Enter name" value={reservation.name} id="name" onChange={inputChange} />
         </Form.Group>
         <Form.Group>
           <Form.Label>Phone</Form.Label>
@@ -91,7 +148,7 @@ const ReservationForm = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-      </Form>
+      </Form> */}
     </>
   );
 };

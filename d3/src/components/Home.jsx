@@ -9,6 +9,8 @@ const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
   getJobs: () => dispatch(getJobsAction()),
+
+  
   addTofav: (company) => {
     dispatch(addToFavAction(company));
   },
